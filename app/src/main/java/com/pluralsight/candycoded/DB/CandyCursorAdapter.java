@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
-import androidx.activity.R;
+import com.pluralsight.candycoded.R;
 
 
 public class CandyCursorAdapter extends CursorAdapter {

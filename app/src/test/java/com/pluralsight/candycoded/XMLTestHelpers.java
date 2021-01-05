@@ -1,4 +1,4 @@
-package TestPak;
+package com.pluralsight.candycoded;
 
 import java.io.IOException;
 import java.util.ArrayList;

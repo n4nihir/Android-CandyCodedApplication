@@ -1,13 +1,9 @@
-package TestPak;
+package com.pluralsight.candycoded;
 
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
-
-import com.pluralsight.candycoded.InfoActivity;
-import com.pluralsight.candycoded.MainActivity;
-
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -96,20 +92,20 @@ public class _1_StartTheStoreInformationActivity {
     @Test
     public void mainactivity_onoptionitemselected_return_super() throws Exception {
         override_mainactivity_onoptionitemselected();
-        Assert.assertFalse("onOptionsItemSelected() does not return call to super.", onOptionsItemSelected_result);
+        assertFalse("onOptionsItemSelected() does not return call to super.", onOptionsItemSelected_result);
     }
 
     @Test
     public void create_intent_infoactivity() throws Exception {
         override_mainactivity_onoptionitemselected();
-        Assert.assertTrue("The Intent was not created.", called_Intent);
-        Assert.assertTrue("The Intent was created but with the wrong parameters. @intent-infoactivity", called_Intent_correctly);
+        assertTrue("The Intent was not created.", called_Intent);
+        assertTrue("The Intent was created but with the wrong parameters. @intent-infoactivity", called_Intent_correctly);
     }
 
     @Test
     public void startactivity_infoactivity() throws Exception {
         override_mainactivity_onoptionitemselected();
-        Assert.assertTrue("The method startActivity() was not called.", called_startActivity);
+        assertTrue("The method startActivity() was not called.", called_startActivity);
     }
 
     @Test
@@ -126,10 +122,10 @@ public class _1_StartTheStoreInformationActivity {
             //e.printStackTrace();
         }
 
-        Assert.assertEquals("onOptionsItemSelected() method doesn't exist in MainActivity class.",
+        assertEquals("onOptionsItemSelected() method doesn't exist in MainActivity class.",
                 myClass, MainActivity.class);
 
-        Assert.assertEquals("onOptionsItemSelected() method doesn't exist in MainActivity class.",
+        assertEquals("onOptionsItemSelected() method doesn't exist in MainActivity class.",
                 myClass, MainActivity.class);
     }
 }

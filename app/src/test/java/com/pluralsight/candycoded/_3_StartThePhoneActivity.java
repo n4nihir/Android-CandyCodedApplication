@@ -1,13 +1,10 @@
-package TestPak;
+package com.pluralsight.candycoded;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
-
-import com.pluralsight.candycoded.InfoActivity;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Method;
@@ -18,7 +15,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
-
+import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -46,8 +43,8 @@ public class _3_StartThePhoneActivity {
         // Spy on a MainActivity instance.
         infoActivity = PowerMockito.spy(new InfoActivity());
         // Create a fake Bundle to pass in.
-        Bundle bundle = Mockito.mock(Bundle.class);
-        Uri mockUri = Mockito.mock(Uri.class);
+        Bundle bundle = mock(Bundle.class);
+        Uri mockUri = mock(Uri.class);
         Intent intent = PowerMockito.spy(new Intent(Intent.ACTION_DIAL));
 
         try {
@@ -81,7 +78,7 @@ public class _3_StartThePhoneActivity {
             Uri.parse("tel:0123456789");
             called_uri_parse = true;
 
-            Mockito.verify(intent).setData(mockUri);
+            verify(intent).setData(mockUri);
             set_data = true;
 
             Mockito.verify(infoActivity).startActivity(Mockito.eq(intent));
@@ -94,20 +91,20 @@ public class _3_StartThePhoneActivity {
     @Test
     public void create_actiondial_phone_intent() throws Exception {
         createPhoneIntent_Exists();
-        Assert.assertTrue("The Intent was not created correctly.", created_intent);
+        assertTrue("The Intent was not created correctly.", created_intent);
     }
 
     @Test
     public void phone_intent_set_data() throws Exception {
         createPhoneIntent_Exists();
-        Assert.assertTrue("The Uri for the phone wasn't created.", called_uri_parse);
-        Assert.assertTrue("The data was not set for the Intent.", set_data);
+        assertTrue("The Uri for the phone wasn't created.", called_uri_parse);
+        assertTrue("The data was not set for the Intent.", set_data);
     }
 
     @Test
     public void phone_intent_start_activity() throws Exception {
         createPhoneIntent_Exists();
-        Assert.assertTrue("The method startActivity() was not called.", called_startActivity_correctly);
+        assertTrue("The method startActivity() was not called.", called_startActivity_correctly);
     }
 
     @Test
@@ -121,7 +118,7 @@ public class _3_StartThePhoneActivity {
             //e.printStackTrace();
         }
 
-        Assert.assertNotNull("createPhoneIntent() method doesn't exist in InfoActivity class.", myMethod);
+        assertNotNull("createPhoneIntent() method doesn't exist in InfoActivity class.", myMethod);
     }
 
     @Test
