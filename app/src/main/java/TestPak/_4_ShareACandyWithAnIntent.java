@@ -1,9 +1,12 @@
-package com.pluralsight.candycoded;
+package TestPak;
 
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
+
+import com.pluralsight.candycoded.DetailActivity;
+
 import java.lang.reflect.Method;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -43,7 +46,7 @@ public class _4_ShareACandyWithAnIntent {
         // Spy on a MainActivity instance.
         detailActivity = PowerMockito.spy(new DetailActivity());
         // Create a fake Bundle to pass in.
-        Bundle bundle = mock(Bundle.class);
+        Bundle bundle = Mockito.mock(Bundle.class);
 
         Intent intent = PowerMockito.spy(new Intent(Intent.ACTION_SEND));
 
@@ -66,13 +69,13 @@ public class _4_ShareACandyWithAnIntent {
                     withArguments(Mockito.eq(Intent.ACTION_SEND));
             created_intent = true;
 
-            verify(intent).setType("text/plain");
+            Mockito.verify(intent).setType("text/plain");
             set_type = true;
 
-            verify(intent).putExtra(Intent.EXTRA_TEXT, SHARE_DESCRIPTION + mCandyImageUrl + HASHTAG_CANDYCODED);
+            Mockito.verify(intent).putExtra(Intent.EXTRA_TEXT, SHARE_DESCRIPTION + mCandyImageUrl + HASHTAG_CANDYCODED);
             called_put_extra = true;
 
-            verify(detailActivity).startActivity(Mockito.eq(intent));
+            Mockito.verify(detailActivity).startActivity(Mockito.eq(intent));
             called_startActivity_correctly = true;
 
 
@@ -93,34 +96,34 @@ public class _4_ShareACandyWithAnIntent {
             //e.printStackTrace();
         }
 
-        assertEquals("onOptionsItemSelected() method doesn't exist in DetailActivity class.",
+        Assert.assertEquals("onOptionsItemSelected() method doesn't exist in DetailActivity class.",
                 myClass, DetailActivity.class);
     }
 
     @Test
     public void onOptionsItemSelected_call_super() throws Exception {
         onOptionsItemSelected_Exists();
-        assertFalse("onOptionsItemSelected() does not return call to super.", onOptionsItemSelected_result);
+        Assert.assertFalse("onOptionsItemSelected() does not return call to super.", onOptionsItemSelected_result);
     }
 
     @Test
     public void share_intent_actionsend() throws Exception {
-        assertTrue("The Intent was not created correctly.", created_intent);
+        Assert.assertTrue("The Intent was not created correctly.", created_intent);
     }
 
     @Test
     public void share_intent_settype() throws Exception {
-        assertTrue("The Intent's type needs to be set with setType().", set_type);
+        Assert.assertTrue("The Intent's type needs to be set with setType().", set_type);
     }
 
     @Test
     public void share_intent_putextra() throws Exception {
-        assertTrue("Send extra data with the Intent with putExtra().", called_put_extra);
+        Assert.assertTrue("Send extra data with the Intent with putExtra().", called_put_extra);
     }
 
     @Test
     public void share_intent_startactivity() throws Exception {
-        assertTrue("The method startActivity() was not called.", called_startActivity_correctly);
+        Assert.assertTrue("The method startActivity() was not called.", called_startActivity_correctly);
     }
     
     @Test
@@ -133,7 +136,7 @@ public class _4_ShareACandyWithAnIntent {
             //e.printStackTrace();
         }
 
-        assertNotNull("reateShareIntent() method doesn't exist in DetailActivity class.", myMethod);
+        Assert.assertNotNull("reateShareIntent() method doesn't exist in DetailActivity class.", myMethod);
     }
 }
 

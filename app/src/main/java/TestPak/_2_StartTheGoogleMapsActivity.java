@@ -1,12 +1,11 @@
-package com.pluralsight.candycoded;
+package TestPak;
 
-import android.content.ComponentName;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
-import android.view.View;
+
+import com.pluralsight.candycoded.InfoActivity;
+import com.sun.jndi.toolkit.url.Uri;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Method;
@@ -53,11 +52,11 @@ public class _2_StartTheGoogleMapsActivity {
         // Spy on a MainActivity instance.
         infoActivity = PowerMockito.spy(new InfoActivity());
         // Create a fake Bundle to pass in.
-        Bundle bundle = mock(Bundle.class);
-        Uri mockUri = mock(Uri.class);
+        Bundle bundle = Mockito.mock(Bundle.class);
+        Uri mockUri = Mockito.mock(Uri.class);
 
-        PackageManager mockPackageManager = mock(PackageManager.class);
-        ComponentName mockComponentName = mock(ComponentName.class);
+        PackageManager mockPackageManager = Mockito.mock(PackageManager.class);
+        ComponentName mockComponentName = Mockito.mock(ComponentName.class);
         Intent actualIntent = new Intent(Intent.ACTION_VIEW, mockUri);
         Intent intent = PowerMockito.spy(actualIntent);
 
@@ -99,10 +98,10 @@ public class _2_StartTheGoogleMapsActivity {
             created_intent = true;
 
 
-            verify(intent).setPackage("com.google.android.apps.maps");
+            Mockito.verify(intent).setPackage("com.google.android.apps.maps");
             set_package = true;
 
-            verify(intent).resolveActivity(mockPackageManager);
+            Mockito.verify(intent).resolveActivity(mockPackageManager);
             resolve_activity = true;
 
             Mockito.verify(infoActivity).startActivity(Mockito.eq(intent));
@@ -117,31 +116,31 @@ public class _2_StartTheGoogleMapsActivity {
     @Test
     public void make_uri_address() throws Exception {
         createMapIntent_Exists();
-        assertTrue("The Uri for the map location wasn't created.", called_uri_parse);
+        Assert.assertTrue("The Uri for the map location wasn't created.", called_uri_parse);
     }
 
     @Test
     public void create_actionview_map_intent() throws Exception {
         createMapIntent_Exists();
-        assertTrue("The Intent was not created correctly.", created_intent);
+        Assert.assertTrue("The Intent was not created correctly.", created_intent);
     }
 
     @Test
     public void map_intent_set_package() throws Exception {
         createMapIntent_Exists();
-        assertTrue("The package was not set for the Intent.", set_package);
+        Assert.assertTrue("The package was not set for the Intent.", set_package);
     }
 
     @Test
     public void map_intent_handler_exists() throws Exception {
         createMapIntent_Exists();
-        assertTrue("The method resolveActivity() needs to be called.", resolve_activity);
+        Assert.assertTrue("The method resolveActivity() needs to be called.", resolve_activity);
     }
 
     @Test
     public void map_intent_start_activity() throws Exception {
         createMapIntent_Exists();
-        assertTrue("The method startActivity() was not called.", called_startActivity_correctly);
+        Assert.assertTrue("The method startActivity() was not called.", called_startActivity_correctly);
     }
 
     @Test
@@ -155,7 +154,7 @@ public class _2_StartTheGoogleMapsActivity {
             //e.printStackTrace();
         }
 
-        assertNotNull("createMapIntent() method doesn't exist in InfoActivity class.", myMethod);
+        Assert.assertNotNull("createMapIntent() method doesn't exist in InfoActivity class.", myMethod);
     }
 
     @Test
